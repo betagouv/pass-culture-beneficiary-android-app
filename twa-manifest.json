@@ -1,0 +1,24 @@
+{
+  "packageId": "fr.gouv.beta.passculture.app.twa",
+  "host": "app.passculture.beta.gouv.fr",
+  "name": "pass Culture",
+  "launcherName": "pass Culture",
+  "themeColor": "#3CED1C",
+  "navigationColor": "#000000",
+  "backgroundColor": "#3CED1C",
+  "enableNotifications": false,
+  "startUrl": "/",
+  "iconUrl": "https://app.passculture.beta.gouv.fr/manifest-icons/app-icon-512px.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "alias": "android",
+    "path": "./android.keystore"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://app.passculture.beta.gouv.fr/manifest.json",
+  "fallbackType": "customtabs",
+  "appVersion": "1"
+}
