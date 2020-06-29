@@ -24,9 +24,9 @@ def twaManifest = [
     launchUrl: '/', // The start path for the TWA. Must be relative to the domain.
     name: 'pass Culture', // The application name.
     launcherName: 'pass Culture', // The name shown on the Android Launcher.
-    themeColor: '#3CED1C', // The color used for the status bar.
+    themeColor: '#FFFFFF', // The color used for the status bar.
     navigationColor: '#000000', // The color used for the navigation bar.
-    backgroundColor: '#3CED1C', // The color used for the splash screen background.
+    backgroundColor: '#EB0055', // The color used for the splash screen background.
     enableNotifications: false, // Set to true to enable notification delegation.
     // Every shortcut must include the following fields:
     // - name: String that will show up in the shortcut.
