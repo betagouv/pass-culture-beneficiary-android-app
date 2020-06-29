@@ -12,8 +12,8 @@
   "maskableIconUrl": "https://app.passculture.beta.gouv.fr/manifest-icons/app-icon-512px.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
-    "alias": "beneficiary-android-app",
-    "path": "./android.keystore"
+    "alias": "android-app",
+    "path": "./android-app.keystore"
   },
   "appVersionName": "First attempt to build with bubblewrap",
   "appVersionCode": 6,
