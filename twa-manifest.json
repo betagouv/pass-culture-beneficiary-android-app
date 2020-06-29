@@ -1,6 +1,6 @@
 {
-  "packageId": "fr.gouv.beta.passculture.app.twa",
-  "host": "app.passculture.beta.gouv.fr",
+  "packageId": "app.passculture.testing.webapp",
+  "host": "app.passculture-testing.beta.gouv.fr",
   "name": "pass Culture",
   "launcherName": "pass Culture",
   "themeColor": "#FFFFFF",
@@ -15,11 +15,11 @@
     "alias": "beneficiary-android-app",
     "path": "./android.keystore"
   },
-  "appVersionName": "1",
-  "appVersionCode": 1,
+  "appVersionName": "First attempt to build with bubblewrap",
+  "appVersionCode": 6,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://app.passculture.beta.gouv.fr/manifest.json",
+  "webManifestUrl": "https://app.passculture-testing.beta.gouv.fr/manifest.json",
   "fallbackType": "customtabs",
-  "appVersion": "1"
+  "appVersion": "First attempt to build with bubblewrap"
 }

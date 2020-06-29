@@ -19,8 +19,8 @@ import groovy.xml.MarkupBuilder
 apply plugin: 'com.android.application'
 
 def twaManifest = [
-    applicationId: 'fr.gouv.beta.passculture.app.twa',
-    hostName: 'app.passculture.beta.gouv.fr', // The domain being opened in the TWA.
+    applicationId: 'app.passculture.testing.webapp',
+    hostName: 'app.passculture-testing.beta.gouv.fr', // The domain being opened in the TWA.
     launchUrl: '/', // The start path for the TWA. Must be relative to the domain.
     name: 'pass Culture', // The application name.
     launcherName: 'pass Culture', // The name shown on the Android Launcher.
@@ -45,11 +45,11 @@ def twaManifest = [
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "fr.gouv.beta.passculture.app.twa"
+        applicationId "app.passculture.testing.webapp"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 1
-        versionName "1"
+        versionCode 6
+        versionName "First attempt to build with bubblewrap"
 
         // The name for the application
         resValue "string", "appName", twaManifest.name
@@ -65,7 +65,7 @@ android {
             // The URL the Web Manifest for the Progressive Web App that the TWA points to. This
             // is used by Chrome OS to open the Web version of the PWA instead of the TWA, as it
             // will probably give a better user experience for non-mobile devices.
-            resValue "string", "webManifestUrl", 'https://app.passculture.beta.gouv.fr/manifest.json'
+            resValue "string", "webManifestUrl", 'https://app.passculture-testing.beta.gouv.fr/manifest.json'
         
 
         // The hostname is used when building the intent-filter, so the TWA is able to
