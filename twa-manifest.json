@@ -15,11 +15,11 @@
     "alias": "android-app",
     "path": "./android-app.keystore"
   },
-  "appVersionName": "First attempt to build with bubblewrap",
-  "appVersionCode": 7,
+  "appVersionName": "First build",
+  "appVersionCode": 1,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://app.passculture-testing.beta.gouv.fr/manifest.json",
   "fallbackType": "customtabs",
-  "appVersion": "First attempt to build with bubblewrap"
+  "appVersion": "First build"
 }

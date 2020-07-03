@@ -48,8 +48,8 @@ android {
         applicationId "app.passculture.webapp"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 7
-        versionName "First attempt to build with bubblewrap"
+        versionCode 1
+        versionName "First build"
 
         // The name for the application
         resValue "string", "appName", twaManifest.name
