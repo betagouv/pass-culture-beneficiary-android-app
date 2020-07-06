@@ -46,13 +46,13 @@ def prodTwaManifest = [
 ]
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "app.passculture"
         minSdkVersion 19
-        targetSdkVersion 29
-        versionCode 1
-        versionName "First build"
+        targetSdkVersion 30
+        versionCode 7
+        versionName "Final build"
 
         resValue "string", "appName", stagingTwaManifest.name
         resValue "string", "launcherName", stagingTwaManifest.launcherName
