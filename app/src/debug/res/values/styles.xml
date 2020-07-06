@@ -13,19 +13,13 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt">
-    <background>
-        <aapt:attr name="android:drawable">
-            <layer-list>
-                <item android:drawable="@android:color/white" />
-                <item android:drawable="@mipmap/ic_maskable"
-					android:top="12.75dp"
-					android:right="12.75dp"
-					android:left="12.75dp"
-					android:bottom="12.75dp" />
-            </layer-list>
-        </aapt:attr>
-    </background>
-    <foreground android:drawable="@android:color/transparent" />
-</adaptive-icon>
+<resources>
+    <!-- Theme to create a blank screen while the TWA is opening -->
+    <style name="Theme.LauncherActivity" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>
