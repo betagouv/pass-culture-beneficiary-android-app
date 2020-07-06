@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
-def devTwaManifest = [
+def stagingTwaManifest = [
         applicationId              : 'app.passculture.testing.webapp',
-        hostName                   : 'app.passculture-testing.beta.gouv.fr', // The domain being opened in the TWA.
+        hostName                   : 'app.passculture-staging.beta.gouv.fr', // The domain being opened in the TWA.
         launchUrl                  : '/', // The start path for the TWA. Must be relative to the domain.
-        name                       : 'pass Culture - Testing', // The application name.
-        launcherName               : 'pass Culture - Testing', // The name shown on the Android Launcher.
+        name                       : 'pass Culture - Staging', // The application name.
+        launcherName               : 'pass Culture - Staging', // The name shown on the Android Launcher.
         themeColor                 : '#FFFFFF', // The color used for the status bar.
         navigationColor            : '#000000', // The color used for the navigation bar.
-        backgroundColor            : '#EB0055', // The color used for the splash screen background.
+        backgroundColor            : '#43DD67', // The color used for the splash screen background.
         enableNotifications        : false, // Set to true to enable notification delegation.
         // Every shortcut must include the following fields:
         // - name: String that will show up in the shortcut.
@@ -54,14 +54,14 @@ android {
         versionCode 1
         versionName "First build"
 
-        resValue "string", "appName", devTwaManifest.name
-        resValue "string", "launcherName", devTwaManifest.launcherName
-        resValue "string", "hostName", devTwaManifest.hostName
+        resValue "string", "appName", stagingTwaManifest.name
+        resValue "string", "launcherName", stagingTwaManifest.launcherName
+        resValue "string", "hostName", stagingTwaManifest.hostName
 
-        def launchUrl = "https://" + devTwaManifest.hostName + devTwaManifest.launchUrl
+        def launchUrl = "https://" + stagingTwaManifest.hostName + stagingTwaManifest.launchUrl
         resValue "string", "launchUrl", launchUrl
 
-        def webManifestUrl = "https://" + devTwaManifest.hostName + "/manifest.json"
+        def webManifestUrl = "https://" + stagingTwaManifest.hostName + "/manifest.json"
         resValue "string", "webManifestUrl", webManifestUrl
 
         // This variable below expresses the relationship between the app and the site,
@@ -71,21 +71,21 @@ android {
         resValue "string", "assetStatements",
                 '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
                         '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
-                        devTwaManifest.hostName + '\\"}}]'
+                        stagingTwaManifest.hostName + '\\"}}]'
 
-        resValue "color", "colorPrimary", devTwaManifest.themeColor
-        resValue "color", "navigationColor", devTwaManifest.navigationColor
-        resValue "color", "backgroundColor", devTwaManifest.backgroundColor
-        resValue "string", "providerAuthority", devTwaManifest.applicationId + '.fileprovider'
-        resValue "bool", "enableNotification", devTwaManifest.enableNotifications.toString()
+        resValue "color", "colorPrimary", stagingTwaManifest.themeColor
+        resValue "color", "navigationColor", stagingTwaManifest.navigationColor
+        resValue "color", "backgroundColor", stagingTwaManifest.backgroundColor
+        resValue "string", "providerAuthority", stagingTwaManifest.applicationId + '.fileprovider'
+        resValue "bool", "enableNotification", stagingTwaManifest.enableNotifications.toString()
 
-        devTwaManifest.shortcuts.eachWithIndex { shortcut, index ->
+        stagingTwaManifest.shortcuts.eachWithIndex { shortcut, index ->
             resValue "string", "shortcut_name_$index", "$shortcut.name"
             resValue "string", "shortcut_short_name_$index", "$shortcut.short_name"
         }
 
-        resValue "integer", "splashScreenFadeOutDuration", devTwaManifest.splashScreenFadeOutDuration.toString()
-        resValue "string", "fallbackType", devTwaManifest.fallbackType
+        resValue "integer", "splashScreenFadeOutDuration", stagingTwaManifest.splashScreenFadeOutDuration.toString()
+        resValue "string", "fallbackType", stagingTwaManifest.fallbackType
     }
 
     buildTypes {
