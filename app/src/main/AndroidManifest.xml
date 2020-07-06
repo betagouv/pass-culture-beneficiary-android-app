@@ -22,7 +22,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.passculture.webapp">
 
-    
+
 
     <application
         android:allowBackup="true"
@@ -35,15 +35,10 @@
             android:name="asset_statements"
             android:resource="@string/assetStatements" />
 
-        
+
             <meta-data
                 android:name="web_manifest_url"
                 android:value="@string/webManifestUrl" />
-        
-
-        <meta-data
-            android:name="twa_generator"
-            android:value="@string/generatorApp" />            
 
         <activity android:name="com.google.androidbrowserhelper.trusted.LauncherActivity"
             android:label="@string/launcherName">
