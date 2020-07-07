@@ -91,6 +91,7 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".testing.webapp"
+            debuggable false
         }
 
         release {
