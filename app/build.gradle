@@ -2,47 +2,15 @@ apply plugin: 'com.android.application'
 
 def stagingTwaManifest = [
         applicationId              : 'app.passculture.testing.webapp',
-        hostName                   : 'app.passculture-staging.beta.gouv.fr', // The domain being opened in the TWA.
-        launchUrl                  : '/', // The start path for the TWA. Must be relative to the domain.
-        name                       : 'pass Culture - Staging', // The application name.
-        launcherName               : 'pass Culture - Staging', // The name shown on the Android Launcher.
-        themeColor                 : '#FFFFFF', // The color used for the status bar.
-        navigationColor            : '#000000', // The color used for the navigation bar.
-        backgroundColor            : '#43DD67', // The color used for the splash screen background.
-        enableNotifications        : false, // Set to true to enable notification delegation.
-        // Every shortcut must include the following fields:
-        // - name: String that will show up in the shortcut.
-        // - short_name: Shorter string used if |name| is too long.
-        // - url: Absolute path of the URL to launch the app with (e.g '/create').
-        // - icon: Name of the resource in the drawable folder to use as an icon.
-        shortcuts                  : [],
-        // The duration of fade out animation in milliseconds to be played when removing splash screen.
-        splashScreenFadeOutDuration: 300,
-        // The fallback strategy for when Trusted Web Activity is not avilable. Possible values are
-        // 'customtabs' and 'webview'.
-        fallbackType               : 'customtabs'
+        hostName                   : 'app.passculture-staging.beta.gouv.fr',
+        name                       : 'pass Culture - Staging',
+        splashScreenBackgroundColor: '#43DD67',
 ]
 def prodTwaManifest = [
         applicationId              : 'app.passculture.webapp',
-        hostName                   : 'app.passculture.beta.gouv.fr', // The domain being opened in the TWA.
-        launchUrl                  : '/', // The start path for the TWA. Must be relative to the domain.
-        name                       : 'pass Culture', // The application name.
-        launcherName               : 'pass Culture', // The name shown on the Android Launcher.
-        themeColor                 : '#FFFFFF', // The color used for the status bar.
-        navigationColor            : '#000000', // The color used for the navigation bar.
-        backgroundColor            : '#EB0055', // The color used for the splash screen background.
-        enableNotifications        : false, // Set to true to enable notification delegation.
-        // Every shortcut must include the following fields:
-        // - name: String that will show up in the shortcut.
-        // - short_name: Shorter string used if |name| is too long.
-        // - url: Absolute path of the URL to launch the app with (e.g '/create').
-        // - icon: Name of the resource in the drawable folder to use as an icon.
-        shortcuts                  : [],
-        // The duration of fade out animation in milliseconds to be played when removing splash screen.
-        splashScreenFadeOutDuration: 300,
-        // The fallback strategy for when Trusted Web Activity is not avilable. Possible values are
-        // 'customtabs' and 'webview'.
-        fallbackType               : 'customtabs'
+        hostName                   : 'app.passculture.beta.gouv.fr',
+        name                       : 'pass Culture',
+        splashScreenBackgroundColor: '#EB0055',
 ]
 
 android {
@@ -54,44 +22,39 @@ android {
         versionCode 7
         versionName "Final build"
 
-        resValue "string", "appName", stagingTwaManifest.name
-        resValue "string", "launcherName", stagingTwaManifest.launcherName
-        resValue "string", "hostName", stagingTwaManifest.hostName
-
-        def launchUrl = "https://" + stagingTwaManifest.hostName + stagingTwaManifest.launchUrl
-        resValue "string", "launchUrl", launchUrl
-
-        def webManifestUrl = "https://" + stagingTwaManifest.hostName + "/manifest.json"
-        resValue "string", "webManifestUrl", webManifestUrl
-
-        // This variable below expresses the relationship between the app and the site,
-        // as documented in the TWA documentation at
-        // https://developers.google.com/web/updates/2017/10/using-twa#set_up_digital_asset_links_in_an_android_app
-        // and is injected into the AndroidManifest.xml
-        resValue "string", "assetStatements",
-                '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
-                        '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
-                        stagingTwaManifest.hostName + '\\"}}]'
-
-        resValue "color", "colorPrimary", stagingTwaManifest.themeColor
-        resValue "color", "navigationColor", stagingTwaManifest.navigationColor
-        resValue "color", "backgroundColor", stagingTwaManifest.backgroundColor
-        resValue "string", "providerAuthority", stagingTwaManifest.applicationId + '.fileprovider'
-        resValue "bool", "enableNotification", stagingTwaManifest.enableNotifications.toString()
-
-        stagingTwaManifest.shortcuts.eachWithIndex { shortcut, index ->
-            resValue "string", "shortcut_name_$index", "$shortcut.name"
-            resValue "string", "shortcut_short_name_$index", "$shortcut.short_name"
-        }
-
-        resValue "integer", "splashScreenFadeOutDuration", stagingTwaManifest.splashScreenFadeOutDuration.toString()
-        resValue "string", "fallbackType", stagingTwaManifest.fallbackType
+        resValue "bool", "enableNotification", "false"
+        resValue "color", "colorPrimary", "#FFFFFF"
+        resValue "color", "navigationColor", "#000000"
+        resValue "integer", "splashScreenFadeOutDuration", "300"
+        resValue "string", "fallbackType", "customtabs"
     }
 
     buildTypes {
         debug {
-            applicationIdSuffix ".testing.webapp"
             debuggable false
+
+            applicationIdSuffix ".testing.webapp"
+            resValue "string", "appName", stagingTwaManifest.name
+            resValue "string", "launcherName", stagingTwaManifest.name
+            resValue "string", "hostName", stagingTwaManifest.hostName
+
+            def launchUrl = "https://" + stagingTwaManifest.hostName + "/"
+            resValue "string", "launchUrl", launchUrl
+
+            def webManifestUrl = "https://" + stagingTwaManifest.hostName + "/manifest.json"
+            resValue "string", "webManifestUrl", webManifestUrl
+
+            // This variable below expresses the relationship between the app and the site,
+            // as documented in the TWA documentation at
+            // https://developers.google.com/web/updates/2017/10/using-twa#set_up_digital_asset_links_in_an_android_app
+            // and is injected into the AndroidManifest.xml
+            resValue "string", "assetStatements",
+                    '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
+                            '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
+                            stagingTwaManifest.hostName + '\\"}}]'
+
+            resValue "color", "backgroundColor", stagingTwaManifest.splashScreenBackgroundColor
+            resValue "string", "providerAuthority", stagingTwaManifest.applicationId + '.fileprovider'
         }
 
         release {
@@ -99,10 +62,10 @@ android {
 
             applicationIdSuffix ".webapp"
             resValue "string", "appName", prodTwaManifest.name
-            resValue "string", "launcherName", prodTwaManifest.launcherName
+            resValue "string", "launcherName", prodTwaManifest.name
             resValue "string", "hostName", prodTwaManifest.hostName
 
-            def launchUrl = "https://" + prodTwaManifest.hostName + prodTwaManifest.launchUrl
+            def launchUrl = "https://" + prodTwaManifest.hostName + "/"
             resValue "string", "launchUrl", launchUrl
 
             def webManifestUrl = "https://" + prodTwaManifest.hostName + "/manifest.json"
@@ -117,19 +80,8 @@ android {
                             '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
                             prodTwaManifest.hostName + '\\"}}]'
 
-            resValue "color", "colorPrimary", prodTwaManifest.themeColor
-            resValue "color", "navigationColor", prodTwaManifest.navigationColor
-            resValue "color", "backgroundColor", prodTwaManifest.backgroundColor
+            resValue "color", "backgroundColor", prodTwaManifest.splashScreenBackgroundColor
             resValue "string", "providerAuthority", prodTwaManifest.applicationId + '.fileprovider'
-            resValue "bool", "enableNotification", prodTwaManifest.enableNotifications.toString()
-
-            prodTwaManifest.shortcuts.eachWithIndex { shortcut, index ->
-                resValue "string", "shortcut_name_$index", "$shortcut.name"
-                resValue "string", "shortcut_short_name_$index", "$shortcut.short_name"
-            }
-
-            resValue "integer", "splashScreenFadeOutDuration", prodTwaManifest.splashScreenFadeOutDuration.toString()
-            resValue "string", "fallbackType", prodTwaManifest.fallbackType
         }
     }
     compileOptions {
