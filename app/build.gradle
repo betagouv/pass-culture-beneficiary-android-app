@@ -25,8 +25,8 @@ android {
         applicationId "app.passculture"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 7
-        versionName "Final build"
+        versionCode 8
+        versionName "Add staging build variant"
 
         resValue "bool", "enableNotification", "false"
         resValue "color", "colorPrimary", "#FFFFFF"
