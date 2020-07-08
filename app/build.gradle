@@ -1,7 +1,13 @@
 apply plugin: 'com.android.application'
 
-def stagingTwaManifest = [
+def testingTwaManifest = [
         applicationId              : 'app.passculture.testing.webapp',
+        hostName                   : 'app.passculture-testing.beta.gouv.fr',
+        name                       : 'pass Culture - Testing',
+        splashScreenBackgroundColor: '#FFC22C',
+]
+def stagingTwaManifest = [
+        applicationId              : 'app.passculture.staging.webapp',
         hostName                   : 'app.passculture-staging.beta.gouv.fr',
         name                       : 'pass Culture - Staging',
         splashScreenBackgroundColor: '#43DD67',
@@ -34,6 +40,33 @@ android {
             debuggable false
 
             applicationIdSuffix ".testing.webapp"
+            resValue "string", "appName", testingTwaManifest.name
+            resValue "string", "launcherName", testingTwaManifest.name
+            resValue "string", "hostName", testingTwaManifest.hostName
+
+            def launchUrl = "https://" + testingTwaManifest.hostName + "/"
+            resValue "string", "launchUrl", launchUrl
+
+            def webManifestUrl = "https://" + testingTwaManifest.hostName + "/manifest.json"
+            resValue "string", "webManifestUrl", webManifestUrl
+
+            // This variable below expresses the relationship between the app and the site,
+            // as documented in the TWA documentation at
+            // https://developers.google.com/web/updates/2017/10/using-twa#set_up_digital_asset_links_in_an_android_app
+            // and is injected into the AndroidManifest.xml
+            resValue "string", "assetStatements",
+                    '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
+                            '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
+                            testingTwaManifest.hostName + '\\"}}]'
+
+            resValue "color", "backgroundColor", testingTwaManifest.splashScreenBackgroundColor
+            resValue "string", "providerAuthority", testingTwaManifest.applicationId + '.fileprovider'
+        }
+
+        staging {
+            minifyEnabled true
+
+            applicationIdSuffix ".staging.webapp"
             resValue "string", "appName", stagingTwaManifest.name
             resValue "string", "launcherName", stagingTwaManifest.name
             resValue "string", "hostName", stagingTwaManifest.hostName

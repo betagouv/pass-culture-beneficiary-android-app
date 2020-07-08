@@ -8,6 +8,7 @@ Par contre elle n'a aucun comportement spécifique.
 
 ## *Build Variants*
 
-Nous utilisons les *Build Variants* pour construire deux applications différentes :
-- `debug` : permet de construire une application pointant sur notre environnement de `staging`
+Nous utilisons les *Build Variants* pour construire trois applications différentes :
+- `debug` : permet de construire une application pointant sur notre environnement de `testing`
+- `staging` : permet de construire une application pointant sur notre environnement de `staging`
 - `release` : permet de construire une application pointant sur notre environnement de `production`
