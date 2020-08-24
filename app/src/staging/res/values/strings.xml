@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="additional_trusted_origins">
+        <item>https://app.passculture-staging.beta.gouv.fr</item>
+        <item>https://id-check-front-staging.passculture.app</item>
+    </string-array>
+</resources>
