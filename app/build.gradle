@@ -2,19 +2,28 @@ apply plugin: 'com.android.application'
 
 def testingTwaManifest = [
         applicationId              : 'app.passculture.testing.webapp',
-        hostName                   : 'app.passculture-testing.beta.gouv.fr',
+        hostNames                  : [
+                webapp: 'app.passculture-testing.beta.gouv.fr',
+                idCheck: 'id-check-front-dev.passculture.app',
+        ],
         name                       : 'pass Culture - Testing',
         splashScreenBackgroundColor: '#FFC22C',
 ]
 def stagingTwaManifest = [
         applicationId              : 'app.passculture.staging.webapp',
-        hostName                   : 'app.passculture-staging.beta.gouv.fr',
+        hostNames                  : [
+                webapp: 'app.passculture-staging.beta.gouv.fr',
+                idCheck: 'id-check-front-staging.passculture.app',
+        ],
         name                       : 'pass Culture - Staging',
         splashScreenBackgroundColor: '#43DD67',
 ]
 def prodTwaManifest = [
         applicationId              : 'app.passculture.webapp',
-        hostName                   : 'app.passculture.beta.gouv.fr',
+        hostNames                  : [
+                webapp: 'app.passculture.beta.gouv.fr',
+                idCheck: 'id-check-front.passculture.app',
+        ],
         name                       : 'pass Culture',
         splashScreenBackgroundColor: '#EB0055',
 ]
@@ -25,8 +34,8 @@ android {
         applicationId "app.passculture"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 9
-        versionName "Add adaptive icons"
+        versionCode 10
+        versionName "Add additional trusted origins"
 
         resValue "bool", "enableNotification", "false"
         resValue "color", "colorPrimary", "#FFFFFF"
@@ -42,12 +51,12 @@ android {
             applicationIdSuffix ".testing.webapp"
             resValue "string", "appName", testingTwaManifest.name
             resValue "string", "launcherName", testingTwaManifest.name
-            resValue "string", "hostName", testingTwaManifest.hostName
+            resValue "string", "hostName", testingTwaManifest.hostNames.webapp
 
-            def launchUrl = "https://" + testingTwaManifest.hostName + "/"
+            def launchUrl = "https://" + testingTwaManifest.hostNames.webapp + "/"
             resValue "string", "launchUrl", launchUrl
 
-            def webManifestUrl = "https://" + testingTwaManifest.hostName + "/manifest.json"
+            def webManifestUrl = "https://" + testingTwaManifest.hostNames.webapp + "/manifest.json"
             resValue "string", "webManifestUrl", webManifestUrl
 
             // This variable below expresses the relationship between the app and the site,
@@ -57,7 +66,10 @@ android {
             resValue "string", "assetStatements",
                     '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
                             '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
-                            testingTwaManifest.hostName + '\\"}}]'
+                            testingTwaManifest.hostNames.webapp + '\\"}}],' +
+                    '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
+                            '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
+                            testingTwaManifest.hostNames.idCheck + '\\"}}],'
 
             resValue "color", "backgroundColor", testingTwaManifest.splashScreenBackgroundColor
             resValue "string", "providerAuthority", testingTwaManifest.applicationId + '.fileprovider'
@@ -69,12 +81,12 @@ android {
             applicationIdSuffix ".staging.webapp"
             resValue "string", "appName", stagingTwaManifest.name
             resValue "string", "launcherName", stagingTwaManifest.name
-            resValue "string", "hostName", stagingTwaManifest.hostName
+            resValue "string", "hostName", stagingTwaManifest.hostNames.webapp
 
-            def launchUrl = "https://" + stagingTwaManifest.hostName + "/"
+            def launchUrl = "https://" + stagingTwaManifest.hostNames.webapp + "/"
             resValue "string", "launchUrl", launchUrl
 
-            def webManifestUrl = "https://" + stagingTwaManifest.hostName + "/manifest.json"
+            def webManifestUrl = "https://" + stagingTwaManifest.hostNames.webapp + "/manifest.json"
             resValue "string", "webManifestUrl", webManifestUrl
 
             // This variable below expresses the relationship between the app and the site,
@@ -84,7 +96,10 @@ android {
             resValue "string", "assetStatements",
                     '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
                             '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
-                            stagingTwaManifest.hostName + '\\"}}]'
+                            stagingTwaManifest.hostNames.webapp + '\\"}}],' +
+                            '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
+                            '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
+                            stagingTwaManifest.hostNames.idCheck + '\\"}}],'
 
             resValue "color", "backgroundColor", stagingTwaManifest.splashScreenBackgroundColor
             resValue "string", "providerAuthority", stagingTwaManifest.applicationId + '.fileprovider'
@@ -96,12 +111,12 @@ android {
             applicationIdSuffix ".webapp"
             resValue "string", "appName", prodTwaManifest.name
             resValue "string", "launcherName", prodTwaManifest.name
-            resValue "string", "hostName", prodTwaManifest.hostName
+            resValue "string", "hostName", prodTwaManifest.hostNames.webapp
 
-            def launchUrl = "https://" + prodTwaManifest.hostName + "/"
+            def launchUrl = "https://" + prodTwaManifest.hostNames.webapp + "/"
             resValue "string", "launchUrl", launchUrl
 
-            def webManifestUrl = "https://" + prodTwaManifest.hostName + "/manifest.json"
+            def webManifestUrl = "https://" + prodTwaManifest.hostNames.webapp + "/manifest.json"
             resValue "string", "webManifestUrl", webManifestUrl
 
             // This variable below expresses the relationship between the app and the site,
@@ -111,7 +126,10 @@ android {
             resValue "string", "assetStatements",
                     '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
                             '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
-                            prodTwaManifest.hostName + '\\"}}]'
+                            prodTwaManifest.hostNames.webapp + '\\"}}],' +
+                            '[{ \\"relation\\": [\\"delegate_permission/common.handle_all_urls\\"],' +
+                            '\\"target\\": {\\"namespace\\": \\"web\\", \\"site\\": \\"https://' +
+                            prodTwaManifest.hostNames.idCheck + '\\"}}],'
 
             resValue "color", "backgroundColor", prodTwaManifest.splashScreenBackgroundColor
             resValue "string", "providerAuthority", prodTwaManifest.applicationId + '.fileprovider'
