@@ -34,8 +34,8 @@ android {
         applicationId "app.passculture"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 10
-        versionName "Add additional trusted origins"
+        versionCode 11
+        versionName "Add support for android 11.0"
 
         resValue "bool", "enableNotification", "false"
         resValue "color", "colorPrimary", "#FFFFFF"
