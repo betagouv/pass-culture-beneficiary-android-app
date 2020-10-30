@@ -34,8 +34,8 @@ android {
         applicationId "app.passculture"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 11
-        versionName "Add support for android 11.0"
+        versionCode 12
+        versionName "Use latest version of android-browser-helper"
 
         resValue "bool", "enableNotification", "false"
         resValue "color", "colorPrimary", "#FFFFFF"
